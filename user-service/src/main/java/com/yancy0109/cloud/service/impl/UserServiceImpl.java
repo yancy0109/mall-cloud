@@ -65,10 +65,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserModel> getUserByIds(List<Long> ids) {
-        List<User> collect = USER_LIST.stream().filter(
-                user -> ids.contains(user.getId())
-        ).collect(Collectors.toList());
-        List<UserModel> result = collect.stream().map(user -> (UserModel)getTarget(user, new UserModel())).collect(Collectors.toList());
+        List<UserModel> result = new ArrayList<>();
+        ids.stream().forEach(
+                id -> {
+                    UserModel userById = getUserById(id);
+                    if (Objects.nonNull(userById)){
+                        result.add(userById);
+                    }else {
+                        throw new RuntimeException("请求的查询不存在");
+                    }
+                }
+        );
+        if (result.isEmpty()){
+            return null;
+        }
         return result;
     }
 

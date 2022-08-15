@@ -1,6 +1,5 @@
 package com.yancy0109.cloud.common;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -67,8 +66,14 @@ public class CommonResult {
         );
     }
 
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
+    /**
+     * 自定义信息错误结果
+     */
+    public static CommonResult error(String msg){
+        return new CommonResult(
+                ResultEnum.ERROR.getCode(),
+                msg,
+                null
+        );
     }
 }
