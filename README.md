@@ -142,3 +142,8 @@ hystrix:
     HystrixThreadPoolKey: #将default换成HystrixThreadPoolKey
       coreSize: 10
 ```
+#### 监控
+##### hystrix-dashboard
+**单个hystrix实例监控**
+##### tubine
+**hystrix集群监控**
